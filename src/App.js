@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-function App() {
+import Header from './components/global/Header';
+import Footer from './components/global/Footer';
+import Home from './view/Home';
+import Nearby from './view/Nearby';
+import NotFound from './view/NotFound';
+import Search from './view/Search'
+import DeviceContextProvider from './services/DeviceContextProvider';
+
+export const FilterContext = createContext(null);
+
+export default function App() {
+  const [city, setCity] = useState(null);
+  const [dist, setDist] = useState(null);
+  const [type, setType] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <DeviceContextProvider>
+        <Header />
+
+        <FilterContext.Provider value={{city, setCity,
+                                        dist, setDist,
+                                        type, setType}}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/nearby" element={<Nearby />} />
+          　<Route path="*" element={<NotFound />} />
+          </Routes>
+        </FilterContext.Provider>
+
+        <Footer />
+      </DeviceContextProvider>
+    </BrowserRouter>
   );
 }
-
-export default App;

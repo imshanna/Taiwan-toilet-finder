@@ -10,7 +10,7 @@ import { DeviceContext } from '../../services/DeviceContextProvider';
 
 const StyledHeader = styled.header`
     position: sticky;
-    z-index: 1000;
+    z-index: 9999;
     top: 0px;
     display: flex;
     justify-content: space-between;
@@ -42,6 +42,10 @@ const StyledHeader = styled.header`
         nav .active{
             display: none;
         }
+    }
+
+    @media only screen and (max-width: 768px) and (min-aspect-ratio: 3/2) {
+        position: static;
     }
 `
 

@@ -9,6 +9,7 @@ import { DataContext } from '../../services/DataContextProvider';
 const ListContainer = styled.ul`
     padding: 0px 16px;
     height: calc(100vh - 340px);
+    min-height: 338px;
     overflow-y: auto;
     background: #fff;
 
@@ -17,6 +18,7 @@ const ListContainer = styled.ul`
         top: 100%;
         width: 100%;
         height: ${({$isOpen}) => $isOpen ? '200px' : '0px'};
+        min-height: 0;
         transition: 0.3s;
     }
 `

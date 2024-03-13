@@ -1,4 +1,7 @@
 module.exports = async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', process.env.APP_URL);
+  res.setHeader('Access-Control-Allow-Methods', 'POST');
+  
   if (req.method === 'POST') {
     try {
       const body = JSON.parse(req.body);
